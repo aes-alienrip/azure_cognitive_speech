@@ -2,13 +2,14 @@ DOMAIN = "azure_cognitive_speech"
 OPT_VOICE = "voice"
 OPT_STYLE = "style"
 OPT_ROLE = "role"
-OPT_SPEED = "speed"
+OPT_RATE = "rate"
 CONF_DEFAULT_VOICE = "default_voice"
-DEFAULT_LANGUAGE = "zh-CN"
-DEFAULT_VOICE = "Xiaoxiao"
+DEFAULT_LANGUAGE = "en-US"
+DEFAULT_VOICE = "JennyMultilingualV2Neural"
 ENDPOINT_URI = "https://{}.api.cognitive.microsoft.com/sts/v1.0/issuetoken"
 TTS_URL = "https://{}.tts.speech.microsoft.com/cognitiveservices/v1"
 TOKEN_OUTDATE = 720
+# https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support?tabs=tts#supported-languages
 SUPPORT_LANGUAGES = [
     "ar-EG",
     "ar-SA",
@@ -77,11 +78,19 @@ SUPPORT_LANGUAGES = [
     "uk-UA",
     "ur-PK",
     "vi-VN",
+    "wuu-CN",
+    "yue-CN",
     "zh-CN",
+    "zh-CN-henan",
+    "zh-CN-liaoning",
+    "zh-CN-shaanxi",
+    "zh-CN-shandong",
+    "zh-CN-sichuan",
     "zh-HK",
     "zh-TW"
 ]
 
+# https://learn.microsoft.com/en-us/azure/cognitive-services/speech-service/language-support?tabs=tts#voice-styles-and-roles
 VOICES_LIST = {
     "Salma": {
         "ShortName": "ar-EG-SalmaNeural",
@@ -93,19 +102,9 @@ VOICES_LIST = {
         "Gender": "Male",
         "Locale": "ar-EG"
     },
-    "Hoda": {
-        "ShortName": "ar-EG-Hoda",
-        "Gender": "Female",
-        "Locale": "ar-EG"
-    },
     "Hamed": {
         "ShortName": "ar-SA-HamedNeural",
         "Gender": "Male",
-        "Locale": "ar-SA"
-    },
-    "Zariyah": {
-        "ShortName": "ar-SA-ZariyahNeural",
-        "Gender": "Female",
         "Locale": "ar-SA"
     },
     "Naayf": {
@@ -113,28 +112,59 @@ VOICES_LIST = {
         "Gender": "Male",
         "Locale": "ar-SA"
     },
-    "Borislav": {
-        "ShortName": "bg-BG-BorislavNeural",
+    "Banu": {
+        "ShortName": "az-AZ-BanuNeural",
+        "Gender": "Female",
+        "Locale": "az-AZ"
+    },
+    "Babek": {
+        "ShortName": "az-AZ-BabekNeural",
         "Gender": "Male",
-        "Locale": "bg-BG"
+        "Locale": "az-AZ"
     },
     "Kalina": {
         "ShortName": "bg-BG-KalinaNeural",
         "Gender": "Female",
         "Locale": "bg-BG"
     },
-    "Ivan": {
-        "ShortName": "bg-BG-Ivan",
+    "Borislav": {
+        "ShortName": "bg-BG-BorislavNeural",
         "Gender": "Male",
         "Locale": "bg-BG"
     },
+
+    "Nabanita": {
+        "ShortName": "bn-BD-NabanitaNeural",
+        "Gender": "Female",
+        "Locale": "bn-BD"
+    },
+    "Pradeep": {
+        "ShortName": "bn-BD-PradeepNeural",
+        "Gender": "Male",
+        "Locale": "bn-BD"
+    },
+    "Tanishaa": {
+        "ShortName": "bn-IN-TanishaaNeural",
+        "Gender": "Female",
+        "Locale": "bn-IN"
+    },
+    "Bashkar": {
+        "ShortName": "bn-IN-BashkarNeural",
+        "Gender": "Male",
+        "Locale": "bn-IN"
+    },
+    "Vesna": {
+        "ShortName": "bs-BA-VesnaNeural",
+        "Gender": "Female",
+        "Locale": "bs-BA"
+    },
+    "Goran": {
+        "ShortName": "bs-BA-GoranNeural",
+        "Gender": "Male",
+        "Locale": "bs-BA"
+    },
     "Joana": {
         "ShortName": "ca-ES-JoanaNeural",
-        "Gender": "Female",
-        "Locale": "ca-ES"
-    },
-    "Alba": {
-        "ShortName": "ca-ES-AlbaNeural",
         "Gender": "Female",
         "Locale": "ca-ES"
     },
@@ -143,34 +173,35 @@ VOICES_LIST = {
         "Gender": "Male",
         "Locale": "ca-ES"
     },
+    "Alba": {
+        "ShortName": "ca-ES-AlbaNeural",
+        "Gender": "Female",
+        "Locale": "ca-ES"
+    },
     "Herena": {
         "ShortName": "ca-ES-HerenaRUS",
         "Gender": "Female",
         "Locale": "ca-ES"
+    },
+
+    "Vlasta": {
+        "ShortName": "cs-CZ-VlastaNeural",
+        "Gender": "Female",
+        "Locale": "cs-CZ"
     },
     "Antonin": {
         "ShortName": "cs-CZ-AntoninNeural",
         "Gender": "Male",
         "Locale": "cs-CZ"
     },
-    "Vlasta": {
-        "ShortName": "cs-CZ-VlastaNeural",
+    "Nia": {
+        "ShortName": "cy-GB-NiaNeural",
         "Gender": "Female",
-        "Locale": "cs-CZ"
-    },
-    "Jakub": {
-        "ShortName": "cs-CZ-Jakub",
-        "Gender": "Male",
-        "Locale": "cs-CZ"
+        "Locale": "cy-GB"
     },
     "Aled": {
         "ShortName": "cy-GB-AledNeural",
         "Gender": "Male",
-        "Locale": "cy-GB"
-    },
-    "Nia": {
-        "ShortName": "cy-GB-NiaNeural",
-        "Gender": "Female",
         "Locale": "cy-GB"
     },
     "Christel": {
@@ -183,11 +214,6 @@ VOICES_LIST = {
         "Gender": "Male",
         "Locale": "da-DK"
     },
-    "Helle": {
-        "ShortName": "da-DK-HelleRUS",
-        "Gender": "Female",
-        "Locale": "da-DK"
-    },
     "Ingrid": {
         "ShortName": "de-AT-IngridNeural",
         "Gender": "Female",
@@ -198,23 +224,13 @@ VOICES_LIST = {
         "Gender": "Male",
         "Locale": "de-AT"
     },
-    "Michael": {
-        "ShortName": "de-AT-Michael",
-        "Gender": "Male",
-        "Locale": "de-AT"
-    },
-    "Jan": {
-        "ShortName": "de-CH-JanNeural",
-        "Gender": "Male",
-        "Locale": "de-CH"
-    },
     "Leni": {
         "ShortName": "de-CH-LeniNeural",
         "Gender": "Female",
         "Locale": "de-CH"
     },
-    "Karsten": {
-        "ShortName": "de-CH-Karsten",
+    "Jan": {
+        "ShortName": "de-CH-JanNeural",
         "Gender": "Male",
         "Locale": "de-CH"
     },
@@ -226,16 +242,74 @@ VOICES_LIST = {
     "Conrad": {
         "ShortName": "de-DE-ConradNeural",
         "Gender": "Male",
-        "Locale": "de-DE"
+        "Locale": "de-DE",
+        "StyleList": [
+            "cheerful"
+        ]
     },
-    "Hedda": {
-        "ShortName": "de-DE-HeddaRUS",
+    "Amala": {
+        "ShortName": "de-DE-AmalaNeural",
         "Gender": "Female",
         "Locale": "de-DE"
     },
-    "Stefan": {
-        "ShortName": "de-DE-Stefan",
+    "Bernd": {
+        "ShortName": "de-DE-BerndNeural",
         "Gender": "Male",
+        "Locale": "de-DE"
+    },
+    "Christoph": {
+        "ShortName": "de-DE-ChristophNeural",
+        "Gender": "Male",
+        "Locale": "de-DE"
+    },
+    "Elke": {
+        "ShortName": "de-DE-ElkeNeural",
+        "Gender": "Female",
+        "Locale": "de-DE"
+    },
+    "Gisela": {
+        "ShortName": "de-DE-GiselaNeural",
+        "Gender": "Female",
+        "Locale": "de-DE"
+    },
+      "Kasper": {
+        "ShortName": "de-DE-KasperNeural",
+        "Gender": "Male",
+        "Locale": "de-DE"
+    },  
+      "Killian": {
+        "ShortName": "de-DE-KillianNeural",
+        "Gender": "Male",
+        "Locale": "de-DE"
+    },  
+    "Klarissa": {
+        "ShortName": "de-DE-KlarissaNeural",
+        "Gender": "Female",
+        "Locale": "de-DE"
+    },
+      "Klaus": {
+        "ShortName": "de-DE-KlausNeural",
+        "Gender": "Male",
+        "Locale": "de-DE"
+    },  
+    "Louisa": {
+        "ShortName": "de-DE-LouisaNeural",
+        "Gender": "Female",
+        "Locale": "de-DE"
+    },
+    "Maja": {
+        "ShortName": "de-DE-MajaNeural",
+        "Gender": "Female",
+        "Locale": "de-DE"
+    },
+      "Ralf": {
+        "ShortName": "de-DE-RalfNeural",
+        "Gender": "Male",
+        "Locale": "de-DE"
+    },  
+    "Tanja": {
+        "ShortName": "de-DE-TanjaNeural",
+        "Gender": "Female",
         "Locale": "de-DE"
     },
     "Athina": {
@@ -245,11 +319,6 @@ VOICES_LIST = {
     },
     "Nestoras": {
         "ShortName": "el-GR-NestorasNeural",
-        "Gender": "Male",
-        "Locale": "el-GR"
-    },
-    "Stefanos": {
-        "ShortName": "el-GR-Stefanos",
         "Gender": "Male",
         "Locale": "el-GR"
     },
@@ -263,13 +332,63 @@ VOICES_LIST = {
         "Gender": "Male",
         "Locale": "en-AU"
     },
-    "Catherine": {
-        "ShortName": "en-AU-Catherine",
+    "Annette": {
+        "ShortName": "en-AU-AnnetteNeural",
         "Gender": "Female",
         "Locale": "en-AU"
     },
-    "Hayley": {
-        "ShortName": "en-AU-HayleyRUS",
+    "Carly": {
+        "ShortName": "en-AU-CarlyNeural",
+        "Gender": "Female",
+        "Locale": "en-AU"
+    },
+    "Darren": {
+        "ShortName": "en-AU-DarrenNeural",
+        "Gender": "Male",
+        "Locale": "en-AU"
+    },
+    "Duncan": {
+        "ShortName": "en-AU-DuncanNeural",
+        "Gender": "Male",
+        "Locale": "en-AU"
+    },
+    "Elsie": {
+        "ShortName": "en-AU-ElsieNeural",
+        "Gender": "Female",
+        "Locale": "en-AU"
+    },
+    "Freya": {
+        "ShortName": "en-AU-FreyaNeural",
+        "Gender": "Female",
+        "Locale": "en-AU"
+    },
+    "Joanne": {
+        "ShortName": "en-AU-JoanneNeural",
+        "Gender": "Female",
+        "Locale": "en-AU"
+    },
+    "Ken": {
+        "ShortName": "en-AU-KenNeural",
+        "Gender": "Male",
+        "Locale": "en-AU"
+    },
+    "Kim": {
+        "ShortName": "en-AU-KimNeural",
+        "Gender": "Female",
+        "Locale": "en-AU"
+    },
+    "Neil": {
+        "ShortName": "en-AU-NeilNeural",
+        "Gender": "Male",
+        "Locale": "en-AU"
+    },
+    "Tim": {
+        "ShortName": "en-AU-TimNeural",
+        "Gender": "Male",
+        "Locale": "en-AU"
+    },
+    "Tina": {
+        "ShortName": "en-AU-TinaNeural",
         "Gender": "Female",
         "Locale": "en-AU"
     },
@@ -283,68 +402,101 @@ VOICES_LIST = {
         "Gender": "Male",
         "Locale": "en-CA"
     },
-    "Heather": {
-        "ShortName": "en-CA-HeatherRUS",
+    "Sonia": {
+        "ShortName": "en-GB-SoniaNeural",
         "Gender": "Female",
-        "Locale": "en-CA"
+        "Locale": "en-GB",
+        "StyleList": [
+            "cheerful",
+            "sad"
+        ]
     },
-    "Linda": {
-        "ShortName": "en-CA-Linda",
-        "Gender": "Female",
-        "Locale": "en-CA"
+    "Ryan": {
+        "ShortName": "en-GB-RyanNeural",
+        "Gender": "Male",
+        "Locale": "en-GB",
+        "StyleList": [
+            "chat",
+            "cheerful"
+        ]
     },
     "Libby": {
         "ShortName": "en-GB-LibbyNeural",
         "Gender": "Female",
         "Locale": "en-GB"
     },
-    "Mia": {
-        "ShortName": "en-GB-MiaNeural",
+    "Abbi": {
+        "ShortName": "en-GB-AbbiNeural",
         "Gender": "Female",
         "Locale": "en-GB"
     },
-    "Ryan": {
-        "ShortName": "en-GB-RyanNeural",
+    "Alfie": {
+        "ShortName": "en-GB-AlfieNeural",
         "Gender": "Male",
         "Locale": "en-GB"
     },
-    "George": {
-        "ShortName": "en-GB-George",
-        "Gender": "Male",
-        "Locale": "en-GB"
-    },
-    "Hazel": {
-        "ShortName": "en-GB-HazelRUS",
+    "Bella": {
+        "ShortName": "en-GB-BellaNeural",
         "Gender": "Female",
         "Locale": "en-GB"
     },
-    "Susan": {
-        "ShortName": "en-GB-Susan",
+    "Elliot": {
+        "ShortName": "en-GB-ElliotNeural",
+        "Gender": "Male",
+        "Locale": "en-GB"
+    },
+    "Ethan": {
+        "ShortName": "en-GB-EthanNeural",
+        "Gender": "Male",
+        "Locale": "en-GB"
+    },
+    "Hollie": {
+        "ShortName": "en-GB-HollieNeural",
         "Gender": "Female",
         "Locale": "en-GB"
     },
-    "Sam": {
-        "ShortName": "en-HK-SamNeural",
+    "Maisie": {
+        "ShortName": "en-GB-MaisieNeural",
+        "Gender": "Female",
+        "Locale": "en-GB"
+    },
+    "Noah": {
+        "ShortName": "en-GB-NoahNeural",
         "Gender": "Male",
-        "Locale": "en-HK"
+        "Locale": "en-GB"
+    },
+    "Oliver": {
+        "ShortName": "en-GB-OliverNeural",
+        "Gender": "Male",
+        "Locale": "en-GB"
+    },
+    "Olivia": {
+        "ShortName": "en-GB-OliviaNeural",
+        "Gender": "Female",
+        "Locale": "en-GB"
+    },
+    "Thomas": {
+        "ShortName": "en-GB-ThomasNeural",
+        "Gender": "Male",
+        "Locale": "en-GB"
     },
     "Yan": {
         "ShortName": "en-HK-YanNeural",
         "Gender": "Female",
         "Locale": "en-HK"
     },
-    "Connor": {
-        "ShortName": "en-IE-ConnorNeural",
+    "Sam": {
+        "ShortName": "en-HK-SamNeural",
         "Gender": "Male",
-        "Locale": "en-IE"
+        "Locale": "en-HK"
     },
     "Emily": {
         "ShortName": "en-IE-EmilyNeural",
         "Gender": "Female",
         "Locale": "en-IE"
     },
-    "Sean": {
-        "ShortName": "en-IE-Sean",
+    "Connor": {
+        "ShortName": "en-IE-ConnorNeural",
         "Gender": "Male",
         "Locale": "en-IE"
     },
@@ -358,39 +510,44 @@ VOICES_LIST = {
         "Gender": "Male",
         "Locale": "en-IN"
     },
-    "Heera": {
-        "ShortName": "en-IN-Heera",
+    "Asilia": {
+        "ShortName": "en-KE-AsiliaNeural",
         "Gender": "Female",
-        "Locale": "en-IN"
+        "Locale": "en-KE"
     },
-    "Priya": {
-        "ShortName": "en-IN-PriyaRUS",
+    "Chilemba": {
+        "ShortName": "en-KE-ChilembaNeural",
+        "Gender": "Male",
+        "Locale": "en-KE"
+    },
+    "Ezinne": {
+        "ShortName": "en-NG-EzinneNeural",
         "Gender": "Female",
-        "Locale": "en-IN"
+        "Locale": "en-NG"
     },
-    "Ravi": {
-        "ShortName": "en-IN-Ravi",
+    "Abeo": {
+        "ShortName": "en-NG-AbeoNeural",
         "Gender": "Male",
-        "Locale": "en-IN"
-    },
-    "Mitchell": {
-        "ShortName": "en-NZ-MitchellNeural",
-        "Gender": "Male",
-        "Locale": "en-NZ"
+        "Locale": "en-NG"
     },
     "Molly": {
         "ShortName": "en-NZ-MollyNeural",
         "Gender": "Female",
         "Locale": "en-NZ"
     },
-    "James": {
-        "ShortName": "en-PH-JamesNeural",
+    "Mitchell": {
+        "ShortName": "en-NZ-MitchellNeural",
         "Gender": "Male",
-        "Locale": "en-PH"
+        "Locale": "en-NZ"
     },
     "Rosa": {
         "ShortName": "en-PH-RosaNeural",
         "Gender": "Female",
+        "Locale": "en-PH"
+    },
+    "James": {
+        "ShortName": "en-PH-JamesNeural",
+        "Gender": "Male",
         "Locale": "en-PH"
     },
     "Luna": {
@@ -403,31 +560,100 @@ VOICES_LIST = {
         "Gender": "Male",
         "Locale": "en-SG"
     },
+    "Imani": {
+        "ShortName": "en-TZ-ImaniNeural",
+        "Gender": "Female",
+        "Locale": "en-TZ"
+    },
+    "Elimu": {
+        "ShortName": "en-TZ-ElimuNeural",
+        "Gender": "Male",
+        "Locale": "en-TZ"
+    },
+    "JennyMultilingual": {
+        "ShortName": "en-US-JennyMultilingualNeural",
+        "Gender": "Female",
+        "Locale": "en-US"
+    },
     "Jenny": {
         "ShortName": "en-US-JennyNeural",
         "Gender": "Female",
         "Locale": "en-US",
         "StyleList": [
+            "angry",
             "assistant",
             "chat",
+            "cheerful",
             "customerservice",
-            "newscast"
+            "excited",
+            "friendly",
+            "hopeful",
+            "newscast",
+            "sad",
+            "shouting",
+            "terrified",
+            "unfriendly",
+            "whispering"
         ]
     },
-    "Jenny Multilingual": {
-        "ShortName": "en-US-JennyMultilingualNeural",
-        "Gender": "Female",
-        "Locale": "en-US"
-    },
     "Guy": {
-        "ShortName": "en-US-GuyRUS",
+        "ShortName": "en-US-GuyNeural",
         "Gender": "Male",
-        "Locale": "en-US"
+        "Locale": "en-US",
+        "StyleList": [
+            "angry",
+            "cheerful",
+            "excited",
+            "friendly",
+            "hopeful",
+            "newscast",
+            "sad",
+            "shouting",
+            "terrified",
+            "unfriendly",
+            "whispering"
+        ]
     },
     "Aria": {
-        "ShortName": "en-US-AriaRUS",
+        "ShortName": "en-US-AriaNeural",
         "Gender": "Female",
-        "Locale": "en-US"
+        "Locale": "en-US",
+        "StyleList": [
+            "angry",
+            "chat",
+            "cheerful",
+            "customerservice",
+            "empathetic",
+            "excited",
+            "friendly",
+            "hopeful",
+            "narration-professional",
+            "newscast-casual",
+            "newscast-formal",
+            "sad",
+            "shouting",
+            "terrified",
+            "unfriendly",
+            "whispering"
+        ]
+    },
+    "Davis": {
+        "ShortName": "en-US-DavisNeural",
+        "Gender": "Male",
+        "Locale": "en-US",
+        "StyleList": [
+            "angry",
+            "chat",
+            "cheerful",
+            "excited",
+            "friendly",
+            "hopeful",
+            "sad",
+            "shouting",
+            "terrified",
+            "unfriendly",
+            "whispering"
+        ]
     },
     "Amber": {
         "ShortName": "en-US-AmberNeural",
@@ -474,6 +700,45 @@ VOICES_LIST = {
         "Gender": "Male",
         "Locale": "en-US"
     },
+    "Jane": {
+        "ShortName": "en-US-JaneNeural",
+        "Gender": "Female",
+        "Locale": "en-US",
+        "StyleList": [
+            "angry",
+            "cheerful",
+            "excited",
+            "friendly",
+            "hopeful",
+            "sad",
+            "shouting",
+            "terrified",
+            "unfriendly",
+            "whispering"
+        ]
+    },
+    "Jason": {
+        "ShortName": "en-US-JasonNeural",
+        "Gender": "Male",
+        "Locale": "en-US",
+        "StyleList": [
+            "angry",
+            "cheerful",
+            "excited",
+            "friendly",
+            "hopeful",
+            "sad",
+            "shouting",
+            "terrified",
+            "unfriendly",
+            "whispering"
+        ]
+    },
+    "JennyMultilingualV2": {
+        "ShortName": "en-US-JennyMultilingualV2Neural",
+        "Gender": "Female",
+        "Locale": "en-US"
+    },
     "Michelle": {
         "ShortName": "en-US-MichelleNeural",
         "Gender": "Female",
@@ -484,14 +749,85 @@ VOICES_LIST = {
         "Gender": "Female",
         "Locale": "en-US"
     },
-    "Benjamin": {
-        "ShortName": "en-US-BenjaminRUS",
+    "Nancy": {
+        "ShortName": "en-US-NancyNeural",
+        "Gender": "Female",
+        "Locale": "en-US",
+        "StyleList": [
+            "angry",
+            "cheerful",
+            "excited",
+            "friendly",
+            "hopeful",
+            "sad",
+            "shouting",
+            "terrified",
+            "unfriendly",
+            "whispering"
+        ]
+    },
+    "Roger": {
+        "ShortName": "en-US-RogerNeural",
         "Gender": "Male",
         "Locale": "en-US"
     },
-    "Zira": {
-        "ShortName": "en-US-ZiraRUS",
+    "RyanMultilingual": {
+        "ShortName": "en-US-RyanMultilingualNeural",
+        "Gender": "Male",
+        "Locale": "en-US"
+    },
+    "Sara": {
+        "ShortName": "en-US-SaraNeural",
         "Gender": "Female",
+        "Locale": "en-US",
+        "StyleList": [
+            "angry",
+            "cheerful",
+            "excited",
+            "friendly",
+            "hopeful",
+            "sad",
+            "shouting",
+            "terrified",
+            "unfriendly",
+            "whispering"
+        ]
+    },
+    "Steffan": {
+        "ShortName": "en-US-SteffanNeural",
+        "Gender": "Male",
+        "Locale": "en-US"
+    },
+    "Tony": {
+        "ShortName": "en-US-TonyNeural",
+        "Gender": "Male",
+        "Locale": "en-US",
+        "StyleList": [
+            "angry",
+            "cheerful",
+            "excited",
+            "friendly",
+            "hopeful",
+            "sad",
+            "shouting",
+            "terrified",
+            "unfriendly",
+            "whispering"
+        ]
+    },
+    "AIGenerate1": {
+        "ShortName": "en-US-AIGenerate1Neural",
+        "Gender": "Male",
+        "Locale": "en-US"
+    },
+    "AIGenerate2": {
+        "ShortName": "en-US-AIGenerate2Neural",
+        "Gender": "Male",
+        "Locale": "en-US"
+    },
+    "Blue": {
+        "ShortName": "en-US-BlueNeural",
+        "Gender": "Neutral",
         "Locale": "en-US"
     },
     "Leah": {
@@ -514,40 +850,180 @@ VOICES_LIST = {
         "Gender": "Male",
         "Locale": "es-AR"
     },
-    "Gonzalo": {
-        "ShortName": "es-CO-GonzaloNeural",
+    "Sofia": {
+        "ShortName": "es-BO-SofiaNeural",
+        "Gender": "Female",
+        "Locale": "es-BO"
+    },
+    "Marcelo": {
+        "ShortName": "es-BO-MarceloNeural",
         "Gender": "Male",
-        "Locale": "es-CO"
+        "Locale": "es-BO"
+    },
+    "Catalina": {
+        "ShortName": "es-CL-CatalinaNeural",
+        "Gender": "Female",
+        "Locale": "es-CL"
+    },
+    "Lorenzo": {
+        "ShortName": "es-CL-LorenzoNeural",
+        "Gender": "Male",
+        "Locale": "es-CL"
     },
     "Salome": {
         "ShortName": "es-CO-SalomeNeural",
         "Gender": "Female",
         "Locale": "es-CO"
     },
-    "Alvaro": {
-        "ShortName": "es-ES-AlvaroNeural",
+    "Gonzalo": {
+        "ShortName": "es-CO-GonzaloNeural",
         "Gender": "Male",
-        "Locale": "es-ES"
+        "Locale": "es-CO"
+    },
+    "Maria": {
+        "ShortName": "es-CR-MariaNeural",
+        "Gender": "Female",
+        "Locale": "es-CR"
+    },
+    "Juan": {
+        "ShortName": "es-CR-JuanNeural",
+        "Gender": "Male",
+        "Locale": "es-CR"
+    },
+    "Belkys": {
+        "ShortName": "es-CU-BelkysNeural",
+        "Gender": "Female",
+        "Locale": "es-CU"
+    },
+    "Manuel": {
+        "ShortName": "es-CU-ManuelNeural",
+        "Gender": "Male",
+        "Locale": "es-CU"
+    },
+    "Ramona": {
+        "ShortName": "es-DO-RamonaNeural",
+        "Gender": "Female",
+        "Locale": "es-DO"
+    },
+    "Emilio": {
+        "ShortName": "es-DO-EmilioNeural",
+        "Gender": "Male",
+        "Locale": "es-DO"
+    },
+    "Andrea": {
+        "ShortName": "es-EC-AndreaNeural",
+        "Gender": "Female",
+        "Locale": "es-EC"
+    },
+    "Luis": {
+        "ShortName": "es-EC-LuisNeural",
+        "Gender": "Male",
+        "Locale": "es-EC"
     },
     "Elvira": {
         "ShortName": "es-ES-ElviraNeural",
         "Gender": "Female",
         "Locale": "es-ES"
     },
-    "Helena": {
-        "ShortName": "es-ES-HelenaRUS",
-        "Gender": "Female",
-        "Locale": "es-ES"
-    },
-    "Laura": {
-        "ShortName": "es-ES-Laura",
-        "Gender": "Female",
-        "Locale": "es-ES"
-    },
-    "Pablo": {
-        "ShortName": "es-ES-Pablo",
+    "Alvaro": {
+        "ShortName": "es-ES-AlvaroNeural",
         "Gender": "Male",
         "Locale": "es-ES"
+    },
+    "Abril": {
+        "ShortName": "es-ES-AbrilNeural",
+        "Gender": "Female",
+        "Locale": "es-ES"
+    },
+    "Arnau": {
+        "ShortName": "es-ES-ArnauNeural",
+        "Gender": "Male",
+        "Locale": "es-ES"
+    },
+    "Dario": {
+        "ShortName": "es-ES-DarioNeural",
+        "Gender": "Male",
+        "Locale": "es-ES"
+    },
+    "Elias": {
+        "ShortName": "es-ES-EliasNeural",
+        "Gender": "Male",
+        "Locale": "es-ES"
+    },
+    "Estrella": {
+        "ShortName": "es-ES-EstrellaNeural",
+        "Gender": "Female",
+        "Locale": "es-ES"
+    },
+    "Irene": {
+        "ShortName": "es-ES-IreneNeural",
+        "Gender": "Female",
+        "Locale": "es-ES"
+    },
+    "Laia": {
+        "ShortName": "es-ES-LaiaNeural",
+        "Gender": "Female",
+        "Locale": "es-ES"
+    },
+    "Lia": {
+        "ShortName": "es-ES-LiaNeural",
+        "Gender": "Female",
+        "Locale": "es-ES"
+    },
+    "Nil": {
+        "ShortName": "es-ES-NilNeural",
+        "Gender": "Male",
+        "Locale": "es-ES"
+    },
+    "Saul": {
+        "ShortName": "es-ES-SaulNeural",
+        "Gender": "Male",
+        "Locale": "es-ES"
+    },
+    "Teo": {
+        "ShortName": "es-ES-TeoNeural",
+        "Gender": "Male",
+        "Locale": "es-ES"
+    },
+    "Triana": {
+        "ShortName": "es-ES-TrianaNeural",
+        "Gender": "Female",
+        "Locale": "es-ES"
+    },
+    "Vera": {
+        "ShortName": "es-ES-VeraNeural",
+        "Gender": "Female",
+        "Locale": "es-ES"
+    },
+    "Teresa": {
+        "ShortName": "es-GQ-TeresaNeural",
+        "Gender": "Female",
+        "Locale": "es-GQ"
+    },
+    "Javier": {
+        "ShortName": "es-GQ-JavierNeural",
+        "Gender": "Male",
+        "Locale": "es-GQ"
+    },
+    "Marta": {
+        "ShortName": "es-GT-MartaNeural",
+        "Gender": "Female",
+        "Locale": "es-GT"
+    },
+    "Andres": {
+        "ShortName": "es-GT-AndresNeural",
+        "Gender": "Male",
+        "Locale": "es-GT"
+    },
+    "Karla": {
+        "ShortName": "es-HN-KarlaNeural",
+        "Gender": "Female",
+        "Locale": "es-HN"
+    },
+    "Carlos": {
+        "ShortName": "es-HN-CarlosNeural",
+        "Gender": "Male",
+        "Locale": "es-HN"
     },
     "Dalia": {
         "ShortName": "es-MX-DaliaNeural",
@@ -557,27 +1033,166 @@ VOICES_LIST = {
     "Jorge": {
         "ShortName": "es-MX-JorgeNeural",
         "Gender": "Male",
-        "Locale": "es-MX"
+        "Locale": "es-MX",
+        "StyleList": [
+            "chat",
+            "cheerful"
+        ]
     },
-    "Hilda": {
-        "ShortName": "es-MX-HildaRUS",
+    "Beatriz": {
+        "ShortName": "es-MX-BeatrizNeural",
         "Gender": "Female",
         "Locale": "es-MX"
     },
-    "Raul": {
-        "ShortName": "es-MX-Raul",
+    "Candela": {
+        "ShortName": "es-MX-CandelaNeural",
+        "Gender": "Female",
+        "Locale": "es-MX"
+    },
+    "Carlota": {
+        "ShortName": "es-MX-CarlotaNeural",
+        "Gender": "Female",
+        "Locale": "es-MX"
+    },
+    "Cecilio": {
+        "ShortName": "es-MX-CecilioNeural",
         "Gender": "Male",
         "Locale": "es-MX"
+    },
+    "Gerardo": {
+        "ShortName": "es-MX-GerardoNeural",
+        "Gender": "Male",
+        "Locale": "es-MX"
+    },
+    "Larissa": {
+        "ShortName": "es-MX-LarissaNeural",
+        "Gender": "Female",
+        "Locale": "es-MX"
+    },
+    "Liberto": {
+        "ShortName": "es-MX-LibertoNeural",
+        "Gender": "Male",
+        "Locale": "es-MX"
+    },
+    "Luciano": {
+        "ShortName": "es-MX-LucianoNeural",
+        "Gender": "Male",
+        "Locale": "es-MX"
+    },
+    "Marina": {
+        "ShortName": "es-MX-MarinaNeural",
+        "Gender": "Female",
+        "Locale": "es-MX"
+    },
+    "Nuria": {
+        "ShortName": "es-MX-NuriaNeural",
+        "Gender": "Female",
+        "Locale": "es-MX"
+    },
+    "Pelayo": {
+        "ShortName": "es-MX-PelayoNeural",
+        "Gender": "Male",
+        "Locale": "es-MX"
+    },
+    "Renata": {
+        "ShortName": "es-MX-RenataNeural",
+        "Gender": "Female",
+        "Locale": "es-MX"
+    },
+    "Yago": {
+        "ShortName": "es-MX-YagoNeural",
+        "Gender": "Male",
+        "Locale": "es-MX"
+    },
+    "Yolanda": {
+        "ShortName": "es-NI-YolandaNeural",
+        "Gender": "Female",
+        "Locale": "es-NI"
+    },
+    "Federico": {
+        "ShortName": "es-NI-FedericoNeural",
+        "Gender": "Male",
+        "Locale": "es-NI"
+    },
+    "Margarita": {
+        "ShortName": "es-PA-MargaritaNeural",
+        "Gender": "Female",
+        "Locale": "es-PA"
+    },
+    "Roberto": {
+        "ShortName": "es-PA-RobertoNeural",
+        "Gender": "Male",
+        "Locale": "es-PA"
+    },
+    "Camila": {
+        "ShortName": "es-PE-CamilaNeural",
+        "Gender": "Female",
+        "Locale": "es-PE"
+    },
+    "Alex": {
+        "ShortName": "es-PE-AlexNeural",
+        "Gender": "Male",
+        "Locale": "es-PE"
+    },
+    "Karina": {
+        "ShortName": "es-PR-KarinaNeural",
+        "Gender": "Female",
+        "Locale": "es-PR"
+    },
+    "Victor": {
+        "ShortName": "es-PR-VictorNeural",
+        "Gender": "Male",
+        "Locale": "es-PR"
+    },
+    "Tania": {
+        "ShortName": "es-PY-TaniaNeural",
+        "Gender": "Female",
+        "Locale": "es-PY"
+    },
+    "Mario": {
+        "ShortName": "es-PY-MarioNeural",
+        "Gender": "Male",
+        "Locale": "es-PY"
+    },
+    "Lorena": {
+        "ShortName": "es-SV-LorenaNeural",
+        "Gender": "Female",
+        "Locale": "es-SV"
+    },
+    "Rodrigo": {
+        "ShortName": "es-SV-RodrigoNeural",
+        "Gender": "Male",
+        "Locale": "es-SV"
+    },
+    "Paloma": {
+        "ShortName": "es-US-PalomaNeural",
+        "Gender": "Female",
+        "Locale": "es-US"
     },
     "Alonso": {
         "ShortName": "es-US-AlonsoNeural",
         "Gender": "Male",
         "Locale": "es-US"
     },
-    "Paloma": {
-        "ShortName": "es-US-PalomaNeural",
+    "Valentina": {
+        "ShortName": "es-UY-ValentinaNeural",
         "Gender": "Female",
-        "Locale": "es-US"
+        "Locale": "es-UY"
+    },
+    "Mateo": {
+        "ShortName": "es-UY-MateoNeural",
+        "Gender": "Male",
+        "Locale": "es-UY"
+    },
+    "Paola": {
+        "ShortName": "es-VE-PaolaNeural",
+        "Gender": "Female",
+        "Locale": "es-VE"
+    },
+    "Sebastian": {
+        "ShortName": "es-VE-SebastianNeural",
+        "Gender": "Male",
+        "Locale": "es-VE"
     },
     "Anu": {
         "ShortName": "et-EE-AnuNeural",
@@ -588,6 +1203,26 @@ VOICES_LIST = {
         "ShortName": "et-EE-KertNeural",
         "Gender": "Male",
         "Locale": "et-EE"
+    },
+    "Ainhoa": {
+        "ShortName": "eu-ES-AinhoaNeural",
+        "Gender": "Female",
+        "Locale": "eu-ES"
+    },
+    "Ander": {
+        "ShortName": "eu-ES-AnderNeural",
+        "Gender": "Male",
+        "Locale": "eu-ES"
+    },
+    "Dilara": {
+        "ShortName": "fa-IR-DilaraNeural",
+        "Gender": "Female",
+        "Locale": "fa-IR"
+    },
+    "Farid": {
+        "ShortName": "fa-IR-FaridNeural",
+        "Gender": "Male",
+        "Locale": "fa-IR"
     },
     "Selma": {
         "ShortName": "fi-FI-SelmaNeural",
@@ -604,10 +1239,15 @@ VOICES_LIST = {
         "Gender": "Female",
         "Locale": "fi-FI"
     },
-    "Heidi": {
-        "ShortName": "fi-FI-HeidiRUS",
+    "Blessica": {
+        "ShortName": "fil-PH-BlessicaNeural",
         "Gender": "Female",
-        "Locale": "fi-FI"
+        "Locale": "fil-PH"
+    },
+    "Angelo": {
+        "ShortName": "fil-PH-AngeloNeural",
+        "Gender": "Male",
+        "Locale": "fil-PH"
     },
     "Charline": {
         "ShortName": "fr-BE-CharlineNeural",
@@ -624,24 +1264,14 @@ VOICES_LIST = {
         "Gender": "Female",
         "Locale": "fr-CA"
     },
-    "Antoine": {
-        "ShortName": "fr-CA-AntoineNeural",
-        "Gender": "Male",
-        "Locale": "fr-CA"
-    },
     "Jean": {
         "ShortName": "fr-CA-JeanNeural",
         "Gender": "Male",
         "Locale": "fr-CA"
     },
-    "Caroline": {
-        "ShortName": "fr-CA-Caroline",
-        "Gender": "Female",
-        "Locale": "fr-CA"
-    },
-    "Harmonie": {
-        "ShortName": "fr-CA-HarmonieRUS",
-        "Gender": "Female",
+    "Antoine": {
+        "ShortName": "fr-CA-AntoineNeural",
+        "Gender": "Male",
         "Locale": "fr-CA"
     },
     "Ariane": {
@@ -654,45 +1284,103 @@ VOICES_LIST = {
         "Gender": "Male",
         "Locale": "fr-CH"
     },
-    "Guillaume": {
-        "ShortName": "fr-CH-Guillaume",
-        "Gender": "Male",
-        "Locale": "fr-CH"
-    },
     "Denise": {
         "ShortName": "fr-FR-DeniseNeural",
         "Gender": "Female",
-        "Locale": "fr-FR"
+        "Locale": "fr-FR",
+        "StyleList": [
+            "cheerful",
+            "sad"
+        ]
     },
     "Henri": {
         "ShortName": "fr-FR-HenriNeural",
         "Gender": "Male",
-        "Locale": "fr-FR"
+        "Locale": "fr-FR",
+        "StyleList": [
+            "cheerful",
+            "sad"
+        ]
     },
-    "Hortense": {
-        "ShortName": "fr-FR-HortenseRUS",
-        "Gender": "Female",
-        "Locale": "fr-FR"
-    },
-    "Julie": {
-        "ShortName": "fr-FR-Julie",
-        "Gender": "Female",
-        "Locale": "fr-FR"
-    },
-    "Paul": {
-        "ShortName": "fr-FR-Paul",
+    "Alain": {
+        "ShortName": "fr-FR-AlainNeural",
         "Gender": "Male",
         "Locale": "fr-FR"
+    },
+    "Brigitte": {
+        "ShortName": "fr-FR-BrigitteNeural",
+        "Gender": "Female",
+        "Locale": "fr-FR"
+    },
+    "Celeste": {
+        "ShortName": "fr-FR-CelesteNeural",
+        "Gender": "Female",
+        "Locale": "fr-FR"
+    },
+    "Claude": {
+        "ShortName": "fr-FR-ClaudeNeural",
+        "Gender": "Male",
+        "Locale": "fr-FR"
+    },
+    "Coralie": {
+        "ShortName": "fr-FR-CoralieNeural",
+        "Gender": "Female",
+        "Locale": "fr-FR"
+    },
+    "Eloise": {
+        "ShortName": "fr-FR-EloiseNeural",
+        "Gender": "Female",
+        "Locale": "fr-FR"
+    },
+    "Jacqueline": {
+        "ShortName": "fr-FR-JacquelineNeural",
+        "Gender": "Female",
+        "Locale": "fr-FR"
+    },
+    "Jerome": {
+        "ShortName": "fr-FR-JeromeNeural",
+        "Gender": "Male",
+        "Locale": "fr-FR"
+    },
+    "Josephine": {
+        "ShortName": "fr-FR-JosephineNeural",
+        "Gender": "Female",
+        "Locale": "fr-FR"
+    },
+    "Maurice": {
+        "ShortName": "fr-FR-MauriceNeural",
+        "Gender": "Male",
+        "Locale": "fr-FR"
+    },
+    "Yves": {
+        "ShortName": "fr-FR-YvesNeural",
+        "Gender": "Male",
+        "Locale": "fr-FR"
+    },
+    "Yvette": {
+        "ShortName": "fr-FR-YvetteNeural",
+        "Gender": "Female",
+        "Locale": "fr-FR"
+    },
+    "Orla": {
+        "ShortName": "ga-IE-OrlaNeural",
+        "Gender": "Female",
+        "Locale": "ga-IE"
     },
     "Colm": {
         "ShortName": "ga-IE-ColmNeural",
         "Gender": "Male",
         "Locale": "ga-IE"
     },
-    "Orla": {
-        "ShortName": "ga-IE-OrlaNeural",
+    "Sabela": {
+        "ShortName": "gl-ES-SabelaNeural",
         "Gender": "Female",
-        "Locale": "ga-IE"
+        "Locale": "gl-ES"
+    },
+    "Roi": {
+        "ShortName": "gl-ES-RoiNeural",
+        "Gender": "Male",
+        "Locale": "gl-ES"
     },
     "Dhwani": {
         "ShortName": "gu-IN-DhwaniNeural",
@@ -711,32 +1399,17 @@ VOICES_LIST = {
     },
     "Hila": {
         "ShortName": "he-IL-HilaNeural",
-        "Gender": "Male",
+        "Gender": "Female",
         "Locale": "he-IL"
-    },
-    "Asaf": {
-        "ShortName": "he-IL-Asaf",
-        "Gender": "Male",
-        "Locale": "he-IL"
-    },
-    "Madhur": {
-        "ShortName": "hi-IN-MadhurNeural",
-        "Gender": "Male",
-        "Locale": "hi-IN"
     },
     "Swara": {
         "ShortName": "hi-IN-SwaraNeural",
         "Gender": "Female",
         "Locale": "hi-IN"
     },
-    "Hemant": {
-        "ShortName": "hi-IN-Hemant",
+    "Madhur": {
+        "ShortName": "hi-IN-MadhurNeural",
         "Gender": "Male",
-        "Locale": "hi-IN"
-    },
-    "Kalpana": {
-        "ShortName": "hi-IN-Kalpana",
-        "Gender": "Female",
         "Locale": "hi-IN"
     },
     "Gabrijela": {
@@ -746,11 +1419,6 @@ VOICES_LIST = {
     },
     "Srecko": {
         "ShortName": "hr-HR-SreckoNeural",
-        "Gender": "Male",
-        "Locale": "hr-HR"
-    },
-    "Matej": {
-        "ShortName": "hr-HR-Matej",
         "Gender": "Male",
         "Locale": "hr-HR"
     },
@@ -764,77 +1432,206 @@ VOICES_LIST = {
         "Gender": "Male",
         "Locale": "hu-HU"
     },
-    "Szabolcs": {
-        "ShortName": "hu-HU-Szabolcs",
-        "Gender": "Male",
-        "Locale": "hu-HU"
+    "Anahit": {
+        "ShortName": "hy-AM-AnahitNeural",
+        "Gender": "Female",
+        "Locale": "hy-AM"
     },
-    "Ardi": {
-        "ShortName": "id-ID-ArdiNeural",
+    "Hayk": {
+        "ShortName": "hy-AM-HaykNeural",
         "Gender": "Male",
-        "Locale": "id-ID"
+        "Locale": "hy-AM"
     },
     "Gadis": {
         "ShortName": "id-ID-GadisNeural",
         "Gender": "Female",
         "Locale": "id-ID"
     },
-    "Andika": {
-        "ShortName": "id-ID-Andika",
+    "Ardi": {
+        "ShortName": "id-ID-ArdiNeural",
         "Gender": "Male",
         "Locale": "id-ID"
     },
-    "Isabella": {
-        "ShortName": "it-IT-IsabellaNeural",
+    "Gudrun": {
+        "ShortName": "is-IS-GudrunNeural",
         "Gender": "Female",
-        "Locale": "it-IT"
+        "Locale": "is-IS"
     },
-    "Diego": {
-        "ShortName": "it-IT-DiegoNeural",
+    "Gunnar": {
+        "ShortName": "is-IS-GunnarNeural",
         "Gender": "Male",
-        "Locale": "it-IT"
+        "Locale": "is-IS"
     },
     "Elsa": {
         "ShortName": "it-IT-ElsaNeural",
         "Gender": "Female",
         "Locale": "it-IT"
     },
-    "Cosimo": {
-        "ShortName": "it-IT-Cosimo",
+    "Isabella": {
+        "ShortName": "it-IT-IsabellaNeural",
+        "Gender": "Female",
+        "Locale": "it-IT",
+        "StyleList": [
+            "chat",
+            "cheerful"
+        ]
+    },
+    "Diego": {
+        "ShortName": "it-IT-DiegoNeural",
         "Gender": "Male",
         "Locale": "it-IT"
     },
-    "Lucia": {
-        "ShortName": "it-IT-LuciaRUS",
+    "Benigno": {
+        "ShortName": "it-IT-BenignoNeural",
+        "Gender": "Male",
+        "Locale": "it-IT"
+    },
+    "Calimero": {
+        "ShortName": "it-IT-CalimeroNeural",
+        "Gender": "Male",
+        "Locale": "it-IT"
+    },
+    "Cataldo": {
+        "ShortName": "it-IT-CataldoNeural",
+        "Gender": "Male",
+        "Locale": "it-IT"
+    },
+    "Fabiola": {
+        "ShortName": "it-IT-FabiolaNeural",
         "Gender": "Female",
+        "Locale": "it-IT"
+    },
+    "Fiamma": {
+        "ShortName": "it-IT-FiammaNeural",
+        "Gender": "Female",
+        "Locale": "it-IT"
+    },
+    "Gianni": {
+        "ShortName": "it-IT-GianniNeural",
+        "Gender": "Male",
+        "Locale": "it-IT"
+    },
+    "Imelda": {
+        "ShortName": "it-IT-ImeldaNeural",
+        "Gender": "Female",
+        "Locale": "it-IT"
+    },
+    "Irma": {
+        "ShortName": "it-IT-IrmaNeural",
+        "Gender": "Female",
+        "Locale": "it-IT"
+    },
+    "Lisandro": {
+        "ShortName": "it-IT-LisandroNeural",
+        "Gender": "Male",
+        "Locale": "it-IT"
+    },
+    "Palmira": {
+        "ShortName": "it-IT-PalmiraNeural",
+        "Gender": "Female",
+        "Locale": "it-IT"
+    },
+    "Pierina": {
+        "ShortName": "it-IT-PierinaNeural",
+        "Gender": "Female",
+        "Locale": "it-IT"
+    },
+    "Rinaldo": {
+        "ShortName": "it-IT-RinaldoNeural",
+        "Gender": "Male",
         "Locale": "it-IT"
     },
     "Nanami": {
         "ShortName": "ja-JP-NanamiNeural",
         "Gender": "Female",
-        "Locale": "ja-JP"
+        "Locale": "ja-JP",
+        "StyleList": [
+            "chat",
+            "cheerful",
+            "customerservice"
+        ]
     },
     "Keita": {
         "ShortName": "ja-JP-KeitaNeural",
         "Gender": "Male",
         "Locale": "ja-JP"
     },
-    "Ayumi": {
-        "ShortName": "ja-JP-Ayumi",
+    "Aoi": {
+        "ShortName": "ja-JP-AoiNeural",
         "Gender": "Female",
         "Locale": "ja-JP"
     },
-    "Haruka": {
-        "ShortName": "ja-JP-HarukaRUS",
-        "Gender": "Female",
-        "Locale": "ja-JP"
-    },
-    "Ichiro": {
-        "ShortName": "ja-JP-Ichiro",
+    "Daichi": {
+        "ShortName": "ja-JP-DaichiNeural",
         "Gender": "Male",
         "Locale": "ja-JP"
     },
-    "Sun-Hi": {
+    "Mayu": {
+        "ShortName": "ja-JP-MayuNeural",
+        "Gender": "Female",
+        "Locale": "ja-JP"
+    },
+    "Naoki": {
+        "ShortName": "ja-JP-NaokiNeural",
+        "Gender": "Male",
+        "Locale": "ja-JP"
+    },
+    "Shiori": {
+        "ShortName": "ja-JP-ShioriNeural",
+        "Gender": "Female",
+        "Locale": "ja-JP"
+    },
+    "Siti": {
+        "ShortName": "jv-ID-SitiNeural",
+        "Gender": "Female",
+        "Locale": "jv-ID"
+    },
+    "Dimas": {
+        "ShortName": "jv-ID-DimasNeural",
+        "Gender": "Male",
+        "Locale": "jv-ID"
+    },
+    "Eka": {
+        "ShortName": "ka-GE-EkaNeural",
+        "Gender": "Female",
+        "Locale": "ka-GE"
+    },
+    "Giorgi": {
+        "ShortName": "ka-GE-GiorgiNeural",
+        "Gender": "Male",
+        "Locale": "ka-GE"
+    },
+    "Aigul": {
+        "ShortName": "kk-KZ-AigulNeural",
+        "Gender": "Female",
+        "Locale": "kk-KZ"
+    },
+    "Daulet": {
+        "ShortName": "kk-KZ-DauletNeural",
+        "Gender": "Male",
+        "Locale": "kk-KZ"
+    },
+    "Sreymom": {
+        "ShortName": "km-KH-SreymomNeural",
+        "Gender": "Female",
+        "Locale": "km-KH"
+    },
+    "Piseth": {
+        "ShortName": "km-KH-PisethNeural",
+        "Gender": "Male",
+        "Locale": "km-KH"
+    },
+    "Sapna": {
+        "ShortName": "kn-IN-SapnaNeural",
+        "Gender": "Female",
+        "Locale": "kn-IN"
+    },
+    "Gagan": {
+        "ShortName": "kn-IN-GaganNeural",
+        "Gender": "Male",
+        "Locale": "kn-IN"
+    },
+    "SunHi": {
         "ShortName": "ko-KR-SunHiNeural",
         "Gender": "Female",
         "Locale": "ko-KR"
@@ -844,19 +1641,54 @@ VOICES_LIST = {
         "Gender": "Male",
         "Locale": "ko-KR"
     },
-    "Heami": {
-        "ShortName": "ko-KR-HeamiRUS",
+    "BongJin": {
+        "ShortName": "ko-KR-BongJinNeural",
+        "Gender": "Male",
+        "Locale": "ko-KR"
+    },
+    "GookMin": {
+        "ShortName": "ko-KR-GookMinNeural",
+        "Gender": "Male",
+        "Locale": "ko-KR"
+    },
+    "JiMin": {
+        "ShortName": "ko-KR-JiMinNeural",
         "Gender": "Female",
         "Locale": "ko-KR"
     },
-    "Leonas": {
-        "ShortName": "lt-LT-LeonasNeural",
+    "SeoHyeon": {
+        "ShortName": "ko-KR-SeoHyeonNeural",
+        "Gender": "Female",
+        "Locale": "ko-KR"
+    },
+    "SoonBok": {
+        "ShortName": "ko-KR-SoonBokNeural",
+        "Gender": "Female",
+        "Locale": "ko-KR"
+    },
+    "YuJin": {
+        "ShortName": "ko-KR-YuJinNeural",
+        "Gender": "Female",
+        "Locale": "ko-KR"
+    },
+    "Keomany": {
+        "ShortName": "lo-LA-KeomanyNeural",
+        "Gender": "Female",
+        "Locale": "lo-LA"
+    },
+    "Chanthavong": {
+        "ShortName": "lo-LA-ChanthavongNeural",
         "Gender": "Male",
-        "Locale": "lt-LT"
+        "Locale": "lo-LA"
     },
     "Ona": {
         "ShortName": "lt-LT-OnaNeural",
         "Gender": "Female",
+        "Locale": "lt-LT"
+    },
+    "Leonas": {
+        "ShortName": "lt-LT-LeonasNeural",
+        "Gender": "Male",
         "Locale": "lt-LT"
     },
     "Everita": {
@@ -869,6 +1701,36 @@ VOICES_LIST = {
         "Gender": "Male",
         "Locale": "lv-LV"
     },
+    "Marija": {
+        "ShortName": "mk-MK-MarijaNeural",
+        "Gender": "Female",
+        "Locale": "mk-MK"
+    },
+    "Aleksandar": {
+        "ShortName": "mk-MK-AleksandarNeural",
+        "Gender": "Male",
+        "Locale": "mk-MK"
+    },
+    "Sobhana": {
+        "ShortName": "ml-IN-SobhanaNeural",
+        "Gender": "Female",
+        "Locale": "ml-IN"
+    },
+    "Midhun": {
+        "ShortName": "ml-IN-MidhunNeural",
+        "Gender": "Male",
+        "Locale": "ml-IN"
+    },
+    "Yesui": {
+        "ShortName": "mn-MN-YesuiNeural",
+        "Gender": "Female",
+        "Locale": "mn-MN"
+    },
+    "Bataa": {
+        "ShortName": "mn-MN-BataaNeural",
+        "Gender": "Male",
+        "Locale": "mn-MN"
+    },
     "Aarohi": {
         "ShortName": "mr-IN-AarohiNeural",
         "Gender": "Female",
@@ -879,18 +1741,13 @@ VOICES_LIST = {
         "Gender": "Male",
         "Locale": "mr-IN"
     },
-    "Osman": {
-        "ShortName": "ms-MY-OsmanNeural",
-        "Gender": "Male",
-        "Locale": "ms-MY"
-    },
     "Yasmin": {
         "ShortName": "ms-MY-YasminNeural",
         "Gender": "Female",
         "Locale": "ms-MY"
     },
-    "Rizwan": {
-        "ShortName": "ms-MY-Rizwan",
+    "Osman": {
+        "ShortName": "ms-MY-OsmanNeural",
         "Gender": "Male",
         "Locale": "ms-MY"
     },
@@ -903,6 +1760,16 @@ VOICES_LIST = {
         "ShortName": "mt-MT-JosephNeural",
         "Gender": "Male",
         "Locale": "mt-MT"
+    },
+    "Nilar": {
+        "ShortName": "my-MM-NilarNeural",
+        "Gender": "Female",
+        "Locale": "my-MM"
+    },
+    "Thiha": {
+        "ShortName": "my-MM-ThihaNeural",
+        "Gender": "Male",
+        "Locale": "my-MM"
     },
     "Pernille": {
         "ShortName": "nb-NO-PernilleNeural",
@@ -919,25 +1786,25 @@ VOICES_LIST = {
         "Gender": "Female",
         "Locale": "nb-NO"
     },
-    "Hulda": {
-        "ShortName": "nb-NO-HuldaRUS",
+    "Hemkala": {
+        "ShortName": "ne-NP-HemkalaNeural",
         "Gender": "Female",
-        "Locale": "nb-NO"
+        "Locale": "ne-NP"
     },
-    "Arnaud": {
-        "ShortName": "nl-BE-ArnaudNeural",
+    "Sagar": {
+        "ShortName": "ne-NP-SagarNeural",
         "Gender": "Male",
-        "Locale": "nl-BE"
+        "Locale": "ne-NP"
     },
     "Dena": {
         "ShortName": "nl-BE-DenaNeural",
         "Gender": "Female",
         "Locale": "nl-BE"
     },
-    "Colette": {
-        "ShortName": "nl-NL-ColetteNeural",
-        "Gender": "Female",
-        "Locale": "nl-NL"
+    "Arnaud": {
+        "ShortName": "nl-BE-ArnaudNeural",
+        "Gender": "Male",
+        "Locale": "nl-BE"
     },
     "Fenna": {
         "ShortName": "nl-NL-FennaNeural",
@@ -947,6 +1814,11 @@ VOICES_LIST = {
     "Maarten": {
         "ShortName": "nl-NL-MaartenNeural",
         "Gender": "Male",
+        "Locale": "nl-NL"
+    },
+    "Colette": {
+        "ShortName": "nl-NL-ColetteNeural",
+        "Gender": "Female",
         "Locale": "nl-NL"
     },
     "Hanna": {
@@ -969,10 +1841,15 @@ VOICES_LIST = {
         "Gender": "Female",
         "Locale": "pl-PL"
     },
-    "Paulina": {
-        "ShortName": "pl-PL-PaulinaRUS",
+    "Latifa": {
+        "ShortName": "ps-AF-LatifaNeural",
         "Gender": "Female",
-        "Locale": "pl-PL"
+        "Locale": "ps-AF"
+    },
+    "GulNawaz": {
+        "ShortName": "ps-AF-GulNawazNeural",
+        "Gender": "Male",
+        "Locale": "ps-AF"
     },
     "Francisca": {
         "ShortName": "pt-BR-FranciscaNeural",
@@ -987,15 +1864,75 @@ VOICES_LIST = {
         "Gender": "Male",
         "Locale": "pt-BR"
     },
-    "Daniel": {
-        "ShortName": "pt-BR-Daniel",
+    "Brenda": {
+        "ShortName": "pt-BR-BrendaNeural",
+        "Gender": "Female",
+        "Locale": "pt-BR"
+    },
+    "Donato": {
+        "ShortName": "pt-BR-DonatoNeural",
         "Gender": "Male",
         "Locale": "pt-BR"
     },
-    "Heloisa": {
-        "ShortName": "pt-BR-HeloisaRUS",
+    "Elza": {
+        "ShortName": "pt-BR-ElzaNeural",
         "Gender": "Female",
         "Locale": "pt-BR"
+    },
+    "Fabio": {
+        "ShortName": "pt-BR-FabioNeural",
+        "Gender": "Male",
+        "Locale": "pt-BR"
+    },
+    "Giovanna": {
+        "ShortName": "pt-BR-GiovannaNeural",
+        "Gender": "Female",
+        "Locale": "pt-BR"
+    },
+    "Humberto": {
+        "ShortName": "pt-BR-HumbertoNeural",
+        "Gender": "Male",
+        "Locale": "pt-BR"
+    },
+    "Julio": {
+        "ShortName": "pt-BR-JulioNeural",
+        "Gender": "Male",
+        "Locale": "pt-BR"
+    },
+    "Leila": {
+        "ShortName": "pt-BR-LeilaNeural",
+        "Gender": "Female",
+        "Locale": "pt-BR"
+    },
+    "Leticia": {
+        "ShortName": "pt-BR-LeticiaNeural",
+        "Gender": "Female",
+        "Locale": "pt-BR"
+    },
+    "Manuela": {
+        "ShortName": "pt-BR-ManuelaNeural",
+        "Gender": "Female",
+        "Locale": "pt-BR"
+    },
+    "Nicolau": {
+        "ShortName": "pt-BR-NicolauNeural",
+        "Gender": "Male",
+        "Locale": "pt-BR"
+    },
+    "Valerio": {
+        "ShortName": "pt-BR-ValerioNeural",
+        "Gender": "Male",
+        "Locale": "pt-BR"
+    },
+    "Yara": {
+        "ShortName": "pt-BR-YaraNeural",
+        "Gender": "Female",
+        "Locale": "pt-BR"
+    },
+    "Raquel": {
+        "ShortName": "pt-PT-RaquelNeural",
+        "Gender": "Female",
+        "Locale": "pt-PT"
     },
     "Duarte": {
         "ShortName": "pt-PT-DuarteNeural",
@@ -1004,16 +1941,6 @@ VOICES_LIST = {
     },
     "Fernanda": {
         "ShortName": "pt-PT-FernandaNeural",
-        "Gender": "Female",
-        "Locale": "pt-PT"
-    },
-    "Raquel": {
-        "ShortName": "pt-PT-RaquelNeural",
-        "Gender": "Female",
-        "Locale": "pt-PT"
-    },
-    "Helia": {
-        "ShortName": "pt-PT-HeliaRUS",
         "Gender": "Female",
         "Locale": "pt-PT"
     },
@@ -1027,18 +1954,8 @@ VOICES_LIST = {
         "Gender": "Male",
         "Locale": "ro-RO"
     },
-    "Andrei": {
-        "ShortName": "ro-RO-Andrei",
-        "Gender": "Male",
-        "Locale": "ro-RO"
-    },
     "Svetlana": {
         "ShortName": "ru-RU-SvetlanaNeural",
-        "Gender": "Female",
-        "Locale": "ru-RU"
-    },
-    "Dariya": {
-        "ShortName": "ru-RU-DariyaNeural",
         "Gender": "Female",
         "Locale": "ru-RU"
     },
@@ -1047,33 +1964,28 @@ VOICES_LIST = {
         "Gender": "Male",
         "Locale": "ru-RU"
     },
-    "Ekaterina": {
-        "ShortName": "ru-RU-EkaterinaRUS",
+    "Dariya": {
+        "ShortName": "ru-RU-DariyaNeural",
         "Gender": "Female",
         "Locale": "ru-RU"
     },
-    "Irina": {
-        "ShortName": "ru-RU-Irina",
+    "Thilini": {
+        "ShortName": "si-LK-ThiliniNeural",
         "Gender": "Female",
-        "Locale": "ru-RU"
+        "Locale": "si-LK"
     },
-    "Pavel": {
-        "ShortName": "ru-RU-Pavel",
+    "Sameera": {
+        "ShortName": "si-LK-SameeraNeural",
         "Gender": "Male",
-        "Locale": "ru-RU"
-    },
-    "Lukas": {
-        "ShortName": "sk-SK-LukasNeural",
-        "Gender": "Male",
-        "Locale": "sk-SK"
+        "Locale": "si-LK"
     },
     "Viktoria": {
         "ShortName": "sk-SK-ViktoriaNeural",
         "Gender": "Female",
         "Locale": "sk-SK"
     },
-    "Filip": {
-        "ShortName": "sk-SK-Filip",
+    "Lukas": {
+        "ShortName": "sk-SK-LukasNeural",
         "Gender": "Male",
         "Locale": "sk-SK"
     },
@@ -1087,18 +1999,58 @@ VOICES_LIST = {
         "Gender": "Male",
         "Locale": "sl-SI"
     },
-    "Lado": {
-        "ShortName": "sl-SI-Lado",
+    "Ubax": {
+        "ShortName": "so-SO-UbaxNeural",
+        "Gender": "Female",
+        "Locale": "so-SO"
+    },
+    "Muuse": {
+        "ShortName": "so-SO-MuuseNeural",
         "Gender": "Male",
-        "Locale": "sl-SI"
+        "Locale": "so-SO"
+    },
+    "Anila": {
+        "ShortName": "sq-AL-AnilaNeural",
+        "Gender": "Female",
+        "Locale": "sq-AL"
+    },
+    "Ilir": {
+        "ShortName": "sq-AL-IlirNeural",
+        "Gender": "Male",
+        "Locale": "sq-AL"
+    },
+    "Nicholas": {
+        "ShortName": "sr-Latn-RS-NicholasNeural",
+        "Gender": "Male",
+        "Locale": "sr-LATN-RS"
+    },
+    "Sophie": {
+        "ShortName": "sr-Latn-RS-SophieNeural",
+        "Gender": "Female",
+        "Locale": "sr-LATN-RS"
+    },
+    "Sophie": {
+        "ShortName": "sr-RS-SophieNeural",
+        "Gender": "Female",
+        "Locale": "sr-RS"
+    },
+    "Nicholas": {
+        "ShortName": "sr-RS-NicholasNeural",
+        "Gender": "Male",
+        "Locale": "sr-RS"
+    },
+    "Tuti": {
+        "ShortName": "su-ID-TutiNeural",
+        "Gender": "Female",
+        "Locale": "su-ID"
+    },
+    "Jajang": {
+        "ShortName": "su-ID-JajangNeural",
+        "Gender": "Male",
+        "Locale": "su-ID"
     },
     "Sofie": {
         "ShortName": "sv-SE-SofieNeural",
-        "Gender": "Female",
-        "Locale": "sv-SE"
-    },
-    "Hillevi": {
-        "ShortName": "sv-SE-HilleviNeural",
         "Gender": "Female",
         "Locale": "sv-SE"
     },
@@ -1107,20 +2059,30 @@ VOICES_LIST = {
         "Gender": "Male",
         "Locale": "sv-SE"
     },
-    "Hedvig": {
-        "ShortName": "sv-SE-HedvigRUS",
+    "Hillevi": {
+        "ShortName": "sv-SE-HilleviNeural",
         "Gender": "Female",
         "Locale": "sv-SE"
+    },
+    "Zuri": {
+        "ShortName": "sw-KE-ZuriNeural",
+        "Gender": "Female",
+        "Locale": "sw-KE"
     },
     "Rafiki": {
         "ShortName": "sw-KE-RafikiNeural",
         "Gender": "Male",
         "Locale": "sw-KE"
     },
-    "Zuri": {
-        "ShortName": "sw-KE-ZuriNeural",
+    "Rehema": {
+        "ShortName": "sw-TZ-RehemaNeural",
         "Gender": "Female",
-        "Locale": "sw-KE"
+        "Locale": "sw-TZ"
+    },
+    "Daudi": {
+        "ShortName": "sw-TZ-DaudiNeural",
+        "Gender": "Male",
+        "Locale": "sw-TZ"
     },
     "Pallavi": {
         "ShortName": "ta-IN-PallaviNeural",
@@ -1132,28 +2094,48 @@ VOICES_LIST = {
         "Gender": "Male",
         "Locale": "ta-IN"
     },
-    "Mohan": {
-        "ShortName": "te-IN-MohanNeural",
+    "Saranya": {
+        "ShortName": "ta-LK-SaranyaNeural",
+        "Gender": "Female",
+        "Locale": "ta-LK"
+    },
+    "Kumar": {
+        "ShortName": "ta-LK-KumarNeural",
         "Gender": "Male",
-        "Locale": "te-IN"
+        "Locale": "ta-LK"
+    },
+    "Kani": {
+        "ShortName": "ta-MY-KaniNeural",
+        "Gender": "Female",
+        "Locale": "ta-MY"
+    },
+    "Surya": {
+        "ShortName": "ta-MY-SuryaNeural",
+        "Gender": "Male",
+        "Locale": "ta-MY"
+    },
+    "Venba": {
+        "ShortName": "ta-SG-VenbaNeural",
+        "Gender": "Female",
+        "Locale": "ta-SG"
+    },
+    "Anbu": {
+        "ShortName": "ta-SG-AnbuNeural",
+        "Gender": "Male",
+        "Locale": "ta-SG"
     },
     "Shruti": {
         "ShortName": "te-IN-ShrutiNeural",
         "Gender": "Female",
         "Locale": "te-IN"
     },
-    "Chitra": {
-        "ShortName": "te-IN-Chitra",
-        "Gender": "Female",
+    "Mohan": {
+        "ShortName": "te-IN-MohanNeural",
+        "Gender": "Male",
         "Locale": "te-IN"
     },
     "Premwadee": {
         "ShortName": "th-TH-PremwadeeNeural",
-        "Gender": "Female",
-        "Locale": "th-TH"
-    },
-    "Achara": {
-        "ShortName": "th-TH-AcharaNeural",
         "Gender": "Female",
         "Locale": "th-TH"
     },
@@ -1162,45 +2144,60 @@ VOICES_LIST = {
         "Gender": "Male",
         "Locale": "th-TH"
     },
-    "Pattara": {
-        "ShortName": "th-TH-Pattara",
-        "Gender": "Male",
+    "Achara": {
+        "ShortName": "th-TH-AcharaNeural",
+        "Gender": "Female",
         "Locale": "th-TH"
-    },
-    "Ahmet": {
-        "ShortName": "tr-TR-AhmetNeural",
-        "Gender": "Male",
-        "Locale": "tr-TR"
     },
     "Emel": {
         "ShortName": "tr-TR-EmelNeural",
         "Gender": "Female",
         "Locale": "tr-TR"
     },
-    "Seda": {
-        "ShortName": "tr-TR-SedaRUS",
-        "Gender": "Female",
-        "Locale": "tr-TR"
-    },
-    "Ostap": {
-        "ShortName": "uk-UA-OstapNeural",
+    "Ahmet": {
+        "ShortName": "tr-TR-AhmetNeural",
         "Gender": "Male",
-        "Locale": "uk-UA"
+        "Locale": "tr-TR"
     },
     "Polina": {
         "ShortName": "uk-UA-PolinaNeural",
         "Gender": "Female",
         "Locale": "uk-UA"
     },
-    "Asad": {
-        "ShortName": "ur-PK-AsadNeural",
+    "Ostap": {
+        "ShortName": "uk-UA-OstapNeural",
         "Gender": "Male",
-        "Locale": "ur-PK"
+        "Locale": "uk-UA"
+    },
+    "Gul": {
+        "ShortName": "ur-IN-GulNeural",
+        "Gender": "Female",
+        "Locale": "ur-IN"
+    },
+    "Salman": {
+        "ShortName": "ur-IN-SalmanNeural",
+        "Gender": "Male",
+        "Locale": "ur-IN"
     },
     "Uzma": {
         "ShortName": "ur-PK-UzmaNeural",
         "Gender": "Female",
         "Locale": "ur-PK"
+    },
+    "Asad": {
+        "ShortName": "ur-PK-AsadNeural",
+        "Gender": "Male",
+        "Locale": "ur-PK"
+    },
+    "Madina": {
+        "ShortName": "uz-UZ-MadinaNeural",
+        "Gender": "Female",
+        "Locale": "uz-UZ"
+    },
+    "Sardor": {
+        "ShortName": "uz-UZ-SardorNeural",
+        "Gender": "Male",
+        "Locale": "uz-UZ"
     },
     "HoaiMy": {
         "ShortName": "vi-VN-HoaiMyNeural",
@@ -1212,28 +2209,85 @@ VOICES_LIST = {
         "Gender": "Male",
         "Locale": "vi-VN"
     },
-    "An": {
-        "ShortName": "vi-VN-An",
+    "Xiaotong": {
+        "ShortName": "wuu-CN-XiaotongNeural",
+        "Gender": "Female",
+        "Locale": "wuu-CN"
+    },
+    "Yunzhe": {
+        "ShortName": "wuu-CN-YunzheNeural",
         "Gender": "Male",
-        "Locale": "vi-VN"
+        "Locale": "wuu-CN"
     },
     "Xiaoxiao": {
         "ShortName": "zh-CN-XiaoxiaoNeural",
         "Gender": "Female",
         "Locale": "zh-CN",
         "StyleList": [
-            "assistant",
-            "chat",
-            "customerservice",
-            "newscast",
             "affectionate",
             "angry",
+            "assistant",
             "calm",
+            "chat",
             "cheerful",
+            "customerservice",
             "disgruntled",
             "fearful",
+            "friendly",
             "gentle",
             "lyrical",
+            "newscast",
+            "poetry-reading",
+            "sad",
+            "serious"
+        ]
+    },
+    "Yunxi": {
+        "ShortName": "zh-CN-YunxiNeural",
+        "Gender": "Male",
+        "Locale": "zh-CN",
+        "StyleList": [
+            "angry",
+            "assistant",
+            "chat",
+            "cheerful",
+            "depressed",
+            "disgruntled",
+            "embarrassed",
+            "fearful",
+            "narration-relaxed",
+            "newscast",
+            "sad",
+            "serious"
+        ],
+        "RolePlayList": [
+            "Boy",
+            "Narrator",
+            "YoungAdultMale"
+        ]
+    },
+    "Yunjian": {
+        "ShortName": "zh-CN-YunjianNeural",
+        "Gender": "Male",
+        "Locale": "zh-CN",
+        "StyleList": [
+            "narration-relaxed",
+            "sports-commentary",
+            "sports-commentary-excited"
+        ]
+    },
+    "Xiaoyi": {
+        "ShortName": "zh-CN-XiaoyiNeural",
+        "Gender": "Female",
+        "Locale": "zh-CN",
+        "StyleList": [
+            "affectionate",
+            "angry",
+            "cheerful",
+            "disgruntled",
+            "embarrassed",
+            "fearful",
+            "gentle",
             "sad",
             "serious"
         ]
@@ -1244,24 +2298,38 @@ VOICES_LIST = {
         "Locale": "zh-CN",
         "StyleList": [
             "customerservice",
-            "narration"
+            "narration-professional",
+            "newscast-casual"
         ]
+    },
+    "Xiaochen": {
+        "ShortName": "zh-CN-XiaochenNeural",
+        "Gender": "Female",
+        "Locale": "zh-CN"
     },
     "Xiaohan": {
         "ShortName": "zh-CN-XiaohanNeural",
         "Gender": "Female",
         "Locale": "zh-CN",
         "StyleList": [
+            "affectionate",
+            "angry",
             "calm",
-            "fearful",
             "cheerful",
             "disgruntled",
-            "serious",
-            "angry",
-            "sad",
+            "embarrassed",
+            "fearful",
             "gentle",
-            "affectionate",
-            "embarrassed"
+            "sad",
+            "serious"
+        ]
+    },
+    "Xiaomeng": {
+        "ShortName": "zh-CN-XiaomengNeural",
+        "Gender": "Female",
+        "Locale": "zh-CN",
+        "StyleList": [
+            "chat"
         ]
     },
     "Xiaomo": {
@@ -1269,35 +2337,52 @@ VOICES_LIST = {
         "Gender": "Female",
         "Locale": "zh-CN",
         "StyleList": [
-            "calm",
-            "fearful",
-            "cheerful",
-            "disgruntled",
-            "serious",
+            "affectionate",
             "angry",
+            "calm",
+            "cheerful",
+            "depressed",
+            "disgruntled",
+            "embarrassed",
+            "envious",
+            "fearful",
             "gentle",
-            "depressed"
+            "sad",
+            "serious"
         ],
         "RolePlayList": [
-            "YoungAdultFemale",
-            "YoungAdultMale",
+            "Boy",
+            "Girl",
             "OlderAdultFemale",
             "OlderAdultMale",
             "SeniorFemale",
             "SeniorMale",
-            "Girl",
-            "Boy"
+            "YoungAdultFemale",
+            "YoungAdultMale"
         ]
+    },
+    "Xiaoqiu": {
+        "ShortName": "zh-CN-XiaoqiuNeural",
+        "Gender": "Female",
+        "Locale": "zh-CN"
     },
     "Xiaorui": {
         "ShortName": "zh-CN-XiaoruiNeural",
         "Gender": "Female",
         "Locale": "zh-CN",
         "StyleList": [
+            "angry",
             "calm",
             "fearful",
-            "angry",
             "sad"
+        ]
+    },
+    "Xiaoshuang": {
+        "ShortName": "zh-CN-XiaoshuangNeural",
+        "Gender": "Female",
+        "Locale": "zh-CN",
+        "StyleList": [
+            "chat"
         ]
     },
     "Xiaoxuan": {
@@ -1305,46 +2390,81 @@ VOICES_LIST = {
         "Gender": "Female",
         "Locale": "zh-CN",
         "StyleList": [
-            "calm",
-            "fearful",
-            "cheerful",
-            "disgruntled",
-            "serious",
             "angry",
+            "calm",
+            "cheerful",
+            "depressed",
+            "disgruntled",
+            "fearful",
             "gentle",
-            "depressed"
+            "serious"
         ],
         "RolePlayList": [
-            "YoungAdultFemale",
-            "YoungAdultMale",
+            "Boy",
+            "Girl",
             "OlderAdultFemale",
             "OlderAdultMale",
             "SeniorFemale",
             "SeniorMale",
-            "Girl",
-            "Boy"
+            "YoungAdultFemale",
+            "YoungAdultMale"
         ]
+    },
+    "Xiaoyan": {
+        "ShortName": "zh-CN-XiaoyanNeural",
+        "Gender": "Female",
+        "Locale": "zh-CN"
     },
     "Xiaoyou": {
         "ShortName": "zh-CN-XiaoyouNeural",
         "Gender": "Female",
         "Locale": "zh-CN"
     },
-    "Yunxi": {
-        "ShortName": "zh-CN-YunxiNeural",
+    "Xiaozhen": {
+        "ShortName": "zh-CN-XiaozhenNeural",
+        "Gender": "Female",
+        "Locale": "zh-CN",
+        "StyleList": [
+            "angry",
+            "cheerful",
+            "disgruntled",
+            "fearful",
+            "sad",
+            "serious"
+        ]
+    },
+    "Yunfeng": {
+        "ShortName": "zh-CN-YunfengNeural",
         "Gender": "Male",
         "Locale": "zh-CN",
         "StyleList": [
-            "assistant",
-            "calm",
-            "fearful",
-            "cheerful",
-            "disgruntled",
-            "serious",
             "angry",
-            "sad",
+            "cheerful",
             "depressed",
-            "embarrassed"
+            "disgruntled",
+            "fearful",
+            "sad",
+            "serious"
+        ]
+    },
+    "Yunhao": {
+        "ShortName": "zh-CN-YunhaoNeural",
+        "Gender": "Male",
+        "Locale": "zh-CN",
+        "StyleList": [
+            "advertisement-upbeat"
+        ]
+    },
+    "Yunxia": {
+        "ShortName": "zh-CN-YunxiaNeural",
+        "Gender": "Male",
+        "Locale": "zh-CN",
+        "StyleList": [
+            "angry",
+            "calm",
+            "cheerful",
+            "fearful",
+            "sad"
         ]
     },
     "Yunye": {
@@ -1352,14 +2472,70 @@ VOICES_LIST = {
         "Gender": "Male",
         "Locale": "zh-CN",
         "StyleList": [
+            "angry",
             "calm",
-            "fearful",
             "cheerful",
             "disgruntled",
-            "serious",
-            "angry",
-            "sad"
+            "embarrassed",
+            "fearful",
+            "sad",
+            "serious"
+        ],
+        "RolePlayList": [
+            "Boy",
+            "Girl",
+            "OlderAdultFemale",
+            "OlderAdultMale",
+            "SeniorFemale",
+            "SeniorMale",
+            "YoungAdultFemale",
+            "YoungAdultMale"
         ]
+    },
+    "Yunze": {
+        "ShortName": "zh-CN-YunzeNeural",
+        "Gender": "Male",
+        "Locale": "zh-CN",
+        "StyleList": [
+            "angry",
+            "calm",
+            "cheerful",
+            "depressed",
+            "disgruntled",
+            "documentary-narration",
+            "fearful",
+            "sad",
+            "serious"
+        ],
+        "RolePlayList": [
+            "OlderAdultMale",
+            "SeniorMale"
+        ]
+    },
+    "Yundeng": {
+        "ShortName": "zh-CN-henan-YundengNeural",
+        "Gender": "Male",
+        "Locale": "zh-CN-henan"
+    },
+    "Xiaobei": {
+        "ShortName": "zh-CN-liaoning-XiaobeiNeural",
+        "Gender": "Female",
+        "Locale": "zh-CN-liaoning"
+    },
+    "Xiaoni": {
+        "ShortName": "zh-CN-shaanxi-XiaoniNeural",
+        "Gender": "Female",
+        "Locale": "zh-CN-shaanxi"
+    },
+    "Yunxiang": {
+        "ShortName": "zh-CN-shandong-YunxiangNeural",
+        "Gender": "Male",
+        "Locale": "zh-CN-shandong"
+    },
+    "sichuan-Yunxi": {
+        "ShortName": "zh-CN-sichuan-YunxiNeural",
+        "Gender": "Male",
+        "Locale": "zh-CN-sichuan"
     },
     "Huihui": {
         "ShortName": "zh-CN-HuihuiRUS",
@@ -1390,6 +2566,16 @@ VOICES_LIST = {
         "ShortName": "zh-HK-WanLungNeural",
         "Gender": "Male",
         "Locale": "zh-HK"
+    },
+    "XiaoMin": {
+        "ShortName": "yue-CN-XiaoMinNeural",
+        "Gender": "Female",
+        "Locale": "yue-CN"
+    },
+    "YunSong": {
+        "ShortName": "yue-CN-YunSongNeural",
+        "Gender": "Male",
+        "Locale": "yue-CN"
     },
     "Danny": {
         "ShortName": "zh-HK-Danny",

@@ -1,6 +1,7 @@
 import time
 import requests
 import logging
+from homeassistant.const import PERCENTAGE
 from .const import (
     DOMAIN, DEFAULT_VOICE,
     ENDPOINT_URI, TTS_URL,
@@ -49,18 +50,18 @@ class CognitiveSpeech:
         self._region = region
         self._default_voice = default_voice
 
-    def ssml_gen(self, text, voice=DEFAULT_VOICE, speed=0, style=None, role=None):
+    def ssml_gen(self, text, voice=DEFAULT_VOICE, style=None, role=None, rate=0):
         if self._default_voice in VOICES_LIST:
             cur_voice = VOICES_LIST[self._default_voice]
         else:
             cur_voice = VOICES_LIST[DEFAULT_VOICE]
-        ssml_speed = 0
         ssml_style = None
         ssml_role = None
+        ssml_rate = 0
         if voice is not None and voice in VOICES_LIST:
             cur_voice = VOICES_LIST[voice]
-        if speed is not None and -5 <= speed <= 5:
-            ssml_speed = speed
+        if rate is not None:
+            ssml_rate = rate
         if style is not None and "StyleList" in cur_voice and style in cur_voice["StyleList"]:
             ssml_style = style
         if role is not None and "RolePlayList" in cur_voice and role in cur_voice["RolePlayList"]:
@@ -77,8 +78,8 @@ class CognitiveSpeech:
         else:
             ssml_mstts_seg = text
             ssml_mstts_head = ""
-        if ssml_speed != 0:
-            ssml_rate = f"{'+' if ssml_speed >= 0 else ''}{ssml_speed * 10}%"
+        if ssml_rate != 0:
+            ssml_rate = f"{rate}{PERCENTAGE}"
             ssml_prosody_seg = f"<prosody rate='{ssml_rate}'>{ssml_mstts_seg}</prosody>"
         else:
             ssml_prosody_seg = ssml_mstts_seg
@@ -89,14 +90,14 @@ class CognitiveSpeech:
         _LOGGER.debug(f"SSML: {ssml}")
         return ssml
 
-    def speech(self, text, voice, speed=0, style=None, role=None):
+    def speech(self, text, voice, style=None, role=None, rate=0,):
         token = self._token.get_token()
         if token is not None:
-            ssml = self.ssml_gen(text, voice=voice, speed=speed, style=style, role=role)
+            ssml = self.ssml_gen(text, voice=voice, style=style, role=role, rate=rate)
             headers = {
                 "authorization": f"Bearer {token}",
                 "content-type": "application/ssml+xml",
-                "x-microsoft-outputformat": "audio-16khz-32kbitrate-mono-mp3"
+                "x-microsoft-outputformat": "audio-24khz-48kbitrate-mono-mp3"
             }
             try:
                 r = requests.post(TTS_URL.format(self._region), headers=headers, data=ssml.encode('utf-8'), timeout=10)
